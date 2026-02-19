@@ -1,9 +1,10 @@
 # Pipeline Architecture
 
-```{image} _static/tbpipelinev.1.1.0.png
+```{image} _static/phip-seq-ont.png
 :alt: Pipeline Architecture Diagram
 :width: 1400px
 :align: center
 ```
+
 
 
