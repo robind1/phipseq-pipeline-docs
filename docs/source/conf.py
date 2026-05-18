@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'PhIP-Seq Analysis Pipeline ONT'
-copyright = '2026, SPHERES Lab Team'
-author = 'SPHERES Lab Team'
+copyright = '2026, SPHERES OUCRU-ID'
+author = 'SPHERES OUCRU-ID'
 release = '0.5.0'
 
 # -- General configuration ---------------------------------------------------
