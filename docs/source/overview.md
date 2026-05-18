@@ -6,10 +6,11 @@ PhIP-Seq is a high-throughput method for profiling antibody repertoires against 
 
 ## Key Features
 * **Nanopore Sequencing Support**: Alignment of nanopore reads using Bowtie2.
-* **Statistical Enrichment Analysis**: Counts-per-million (CPM) normalization, size factor estimation, Z-score modeling against bead-only controls, and optional edgeR/BEER analysis.
+* **Statistical Enrichment Analysis**: Counts-per-million (CPM) normalization, size factor estimation, Z-score against bead-only controls, and optional edgeR/BEER analysis.
 * **Virus Scoring**: Calculates per-species virus exposure scores based on enriched peptide hits with novel epitope filtering.
 * **FDR Analysis**: Benjamini-Hochberg FDR correction on Z-score-derived p-values for multiple testing control.
 * **IEDB Epitope Annotation**: Cross-references enriched peptides against the Immune Epitope Database (IEDB) to identify known and novel epitopes.
+* **Neutralizing prediction**: Identify potential neutralizing peptides (In development).
 * **FHIR Compliance**: Generates HL7 FHIR R4 bundles encoding PhIP-Seq observations for clinical data exchange.
 * **3D Protein Visualization**: Interactive Streamlit dashboard with Mol* viewer for mapping enriched epitopes onto PDB structures.
 * **Interactive Heatmaps**: Virus score and Z-score heatmaps for visual exploration.
@@ -18,6 +19,7 @@ PhIP-Seq is a high-throughput method for profiling antibody repertoires against 
 * Normalized count matrices (CPM, size factors, Z-scores)
 * Virus scores per sample per species
 * IEDB epitope annotation reports
+* Neutralizing prediction (in development)
 * FHIR genomics bundles
 * Interactive heatmaps (virus scores, Z-scores)
 * Streamlit 3D protein structure visualization
