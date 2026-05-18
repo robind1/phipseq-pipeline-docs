@@ -55,6 +55,11 @@ The pipeline requires two primary input tables and raw sequencing data in FASTQ 
 * **Format**: TSV file from the [Immune Epitope Database](https://www.iedb.org/).
 * **Usage**: Cross-referenced to annotate enriched peptides with known epitope information.
 
+### IEDB Neutralizing Database
+* **Path**: Configured via `params.neutralization_db`.
+* **Format**: TSV file from the [Immune Epitope Database](https://www.iedb.org/).
+* **Usage**: Cross-referenced to annotate neutralizing peptides with known epitope information.
+  
 ### PDB Structures
 * **Path**: Configured via `params.pdb_dir`.
 * **Format**: Directory containing `.pdb` or `.cif` structure files named by PDB ID.
