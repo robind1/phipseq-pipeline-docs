@@ -1,7 +1,7 @@
 # Version
 
 ## Pipeline Version
-* **PhIP-Seq Analysis Pipeline Version:** 1.0.0
+* **PhIP-Seq Analysis Pipeline Version:** 0.5.0
 * **Adapted from:** [phip-flow](https://github.com/matsengrp/phip-flow) by the Matsen Group
 
 ## Software Dependencies
