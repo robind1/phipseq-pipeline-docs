@@ -52,77 +52,142 @@ The interpretation threshold of 3.5 matches the default `zscore_threshold` param
 ## Example: Observation Resource
 
 ```json
-{
-  "resourceType": "Observation",
-  "id": "SampleA-obs-42",
-  "meta": {
-    "profile": ["http://hl7.org/fhir/StructureDefinition/Observation"],
-    "tag": [
-      {
-        "system": "http://terminology.kemkes.go.id/sp",
-        "code": "phipseq",
-        "display": "PhIP-Seq"
+   {
+      "fullUrl": "...",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1-obs-392",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/StructureDefinition/Observation"
+          ],
+          "tag": [
+            {
+              "system": "http://terminology.kemkes.go.id/sp",
+              "code": "phipseq",
+              "display": "PhIP-Seq"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "94531-1",
+              "display": "Epitope binding signal intensity"
+            }
+          ],
+          "text": "PhIP-Seq Viral Epitope Binding Signal"
+        },
+        "subject": {
+          "reference": "Patient/1-patient",
+          "display": "Patient_1"
+        },
+        "specimen": {
+          "reference": "Specimen/1-specimen",
+          "display": "Serum specimen from Patient_1"
+        },
+        "effectiveDateTime": "2026-05-18T04:31:50.518299+00:00",
+        "issued": "2026-05-18T04:31:50.518299+00:00",
+        "performer": [
+          {
+            "reference": "Organization/aa",
+            "display": "aa"
+          },
+          {
+            "reference": "Practitioner/aa",
+            "display": "aa"
+          }
+        ],
+        "valueQuantity": {
+          "value": 15.798,
+          "unit": "z-score",
+          "system": "http://unitsofmeasure.org",
+          "code": "{score}"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "POS",
+                "display": "Positive"
+              }
+            ]
+          }
+        ],
+        "note": [
+          {
+            "text": "Strong viral epitope binding signal detected"
+          },
+          {
+            "text": "Peptide ID: 391, Z-score: 15.798"
+          }
+        ],
+        "method": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "708049000",
+              "display": "Phage immunoprecipitation sequencing"
+            }
+          ],
+          "text": "PhIP-Seq using Vir3 Library"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://sys-ids.kemkes.go.id/phipseq",
+                  "code": "epitope-organism",
+                  "display": "Epitope Source Organism"
+                }
+              ]
+            },
+            "valueString": "HKU1_SI17244_replicase_polyprotein_1ab"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://sys-ids.kemkes.go.id/phipseq",
+                  "code": "epitope-protein",
+                  "display": "Epitope Source Protein"
+                }
+              ]
+            },
+            "valueString": "replicase_polyprotein_1ab"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://sys-ids.kemkes.go.id/phipseq",
+                  "code": "epitope-position",
+                  "display": "Epitope Start Position in Protein"
+                }
+              ]
+            },
+            "valueInteger": 6481
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/1-obs-392"
       }
-    ]
-  },
-  "status": "final",
-  "category": [
-    {
-      "coding": [
-        {
-          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-          "code": "laboratory",
-          "display": "Laboratory"
-        }
-      ]
     }
-  ],
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "94531-1",
-        "display": "Epitope binding signal intensity"
-      }
-    ],
-    "text": "PhIP-Seq Viral Epitope Binding Signal"
-  },
-  "subject": {
-    "reference": "Patient/SampleA-patient"
-  },
-  "specimen": {
-    "reference": "Specimen/SampleA-specimen"
-  },
-  "valueQuantity": {
-    "value": 5.234,
-    "unit": "z-score",
-    "system": "http://unitsofmeasure.org",
-    "code": "{score}"
-  },
-  "interpretation": [
-    {
-      "coding": [
-        {
-          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
-          "code": "POS",
-          "display": "Positive"
-        }
-      ]
-    }
-  ],
-  "method": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "708049000",
-        "display": "Phage immunoprecipitation sequencing"
-      }
-    ],
-    "text": "PhIP-Seq using Vir3 Library"
-  },
-  "note": [
-    {"text": "Strong viral epitope binding signal detected"},
-    {"text": "Peptide ID: 42, Z-score: 5.234"}
-  ]
-}
 ```
