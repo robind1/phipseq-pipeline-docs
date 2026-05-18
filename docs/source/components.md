@@ -142,5 +142,47 @@ Creates an interactive 3D protein visualization web application.
      - Sequence-to-structure mapping.
      - Per-sample epitope selection with color-coded highlighting.
 
+## 10. Neutralization Prediction Workflow (NEUTRALIZATION_PREDICTION)
+**File:** `workflows/neutralization_score.nf`
+Predicts neutralizing antibody potential of detected epitopes using multi-factor scoring (In development).
+### Steps:
+1. **Parse 3D Structures**
+   - Computes **Solvent-Accessible Surface Area (SASA)** using Shrake-Rupley algorithm.
+   - Extracts B-factor normalization per chain.
+   - Caches chain sequences and coordinates for matching epitopes.
+2. **Calculate Peptide Scores**
+   - **Conservation Score**: Log-weighted IEDB epitope match count.
+   - **IEDB Evidence Score**: Shannon entropy of source organisms.
+   - **Epitope Coverage Score**: Fraction of protein positions with IEDB hits.
+   - **Neutralization DB Score**: Tiered scoring for exact/substring/kmer matches in neutralization database.
+   - **Structural Features**:
+     - SASA normalization (0–1 scale per residue type).
+     - B-factor (normalized per chain).
+     - 3D centroid coordinates of matched epitope region.
+   - **Sequence Properties**:
+     - **GRAVY** (Kyte-Doolittle hydropathy): influences surface accessibility multiplier.
+     - **Flexibility Bonus**: loop-forming residues (G, P, S, T).
+     - **N-Glycosylation Penalty**: counts NxS/T motifs, reduces score up to 0.75×.
+   - **Context Factor**: 1.12× for spike protein, 1.06× for envelope/membrane proteins.
+4. **Sample-Level Scoring**
+   - For each Z-score hit ≥ threshold (default: 3.5) per sample:
+     - Converts Z-score to PhIP signal.
+     - Combines static scores with Q-value using weighted linear combination (default weights: 0.15 conservation, 0.25 PhIP, 0.1 IEDB, 0.25 neut DB, 0.15 coverage, 0.1 B-factor).
+     - Applies multipliers: GRAVY, glycan, context, flexibility bonus.
+     - Filters by SASA (hard threshold: <0.05 → score × 0.0).
+   - Prediction category:
+     - **High**: composite ≥ 3.0 (default threshold).
+     - **Moderate**: composite ≥ 1.95 (65% threshold).
+     - **Low**: composite < 1.95.
+5. **Spatial Clustering**
+   - Groups peptides by sample + PDB ID; clusters epitope coordinates within 8.0 Å (configurable).
+   - Annotates conformational epitope clusters.
+6. **Outputs**
+   - `neutralization_scores_per_sample.csv`
+   - `high_confidence_candidates.csv`
+   - `neutralization_summary.txt`
+   - `detailed_analysis.json`
+   - `conformational_epitope_clusters.csv`
+
 ## Workflow Parameters
 All parameters are defined in `nextflow.config`.
