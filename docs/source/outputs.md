@@ -57,6 +57,21 @@ Per-sample annotation results from cross-referencing with the Immune Epitope Dat
 | `*_significant_epitopes.csv` | Matched epitopes from peptides with Z-score ≥ threshold |
 | `*_annotation_summary.txt` | Human-readable summary with match rates and statistics |
 
+## Neutralization Prediction Outputs
+Per-sample and aggregated predictions of neutralizing antibody potential from detected epitopes.
+
+| File | Description |
+| :--- | :--- |
+| `neutralization_scores_per_sample.csv` | Per-peptide composite scores, structural features, and prediction categories (High/Moderate/Low) |
+| `high_confidence_candidates.csv` | Filtered subset of peptides predicted as High neutralization potential |
+| `neutralization_summary.txt` | Summary statistics: sample count, reactive peptide count, prediction distribution, threshold, score percentiles |
+| `detailed_analysis.json` | Score distribution statistics (mean, std, percentiles), prediction counts, algorithm weights used, peptides with structural data and cluster membership |
+| `conformational_epitope_clusters.csv` | Spatial clusters of peptides (same PDB + sample) within 8 Ångströms; includes cluster center coordinates (X, Y, Z) |
+
+**Prediction Categories:**
+- **High**: composite ≥ 3.0
+- **Moderate**: composite ≥ 1.95
+- **Low**: composite < 1.95
 
 ## Visualization Outputs
 
